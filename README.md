@@ -17,22 +17,9 @@
 ## 📁 Repository Structure
 
 ```
-AI_ProblemSolving_<RegisterNumber>/
-│
-├── Problem_06_Sudoku_CSP/
-│   ├── sudoku_solver.py        ← Main application (single-file)
-│   ├── requirements.txt
-│   └── screenshots/
-│       ├── gameplay.png
-│       └── ai_solve.png
-│
-├── Problem_19_Loan_Prediction/
-│   ├── loan_prediction.py      ← Main application (single-file)
-│   ├── requirements.txt
-│   └── screenshots/
-│       ├── approved.png
-│       └── rejected.png
-│
+AI_ProblemSolving_RA2411026050026_RA2411026050056/
+│   ├── sudoku_solver project 6.py        ← Main application (single-file)
+│   ├── loan_prediction project 19.py      ← Main application (single-file)
 └── README.md
 ```
 
