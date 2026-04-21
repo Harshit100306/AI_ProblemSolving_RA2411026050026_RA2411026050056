@@ -97,9 +97,6 @@ python --version
 
 **Run the application:**
 ```bash
-# Navigate to the problem folder
-cd Problem_06_Sudoku_CSP
-
 # Run directly — no pip install needed!
 python sudoku_solver.py
 ```
@@ -223,9 +220,6 @@ python --version
 
 **Run the application:**
 ```bash
-# Navigate to the problem folder
-cd Problem_19_Loan_Prediction
-
 # Run directly!
 python loan_prediction.py
 ```
