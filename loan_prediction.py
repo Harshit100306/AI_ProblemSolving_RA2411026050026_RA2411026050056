@@ -626,6 +626,37 @@ class LoanApp:
         # Ensemble: average probability
         avg_prob = (lr_prob + rf_prob) / 2
         final    = 1 if avg_prob >= 0.5 else 0
+        # ─── Explainable AI (Decision Factors) ───
+        reasons = []
+        
+        # Positive factors
+        if sample_raw[1] >= 700:
+            reasons.append("✔ High credit score")
+        
+        if sample_raw[0] >= 20:
+            reasons.append("✔ Strong annual income")
+        
+        if sample_raw[4] <= 30:
+            reasons.append("✔ Low existing debt")
+        
+        if sample_raw[3] >= 5:
+            reasons.append("✔ Stable employment")
+        
+        if sample_raw[5] >= 30:
+            reasons.append("✔ Good asset base")
+        
+        # Negative factors
+        if sample_raw[1] < 580:
+            reasons.append("✖ Low credit score")
+        
+        if sample_raw[4] > 50:
+            reasons.append("✖ High debt ratio")
+        
+        if sample_raw[2] > sample_raw[0] * 3:
+            reasons.append("✖ Loan too large compared to income")
+        
+        if sample_raw[3] < 1:
+            reasons.append("✖ Unstable employment")
 
         # Update UI
         if final == 1:
@@ -657,10 +688,12 @@ class LoanApp:
         if not rules:
             rules = ["• Profile meets approval criteria"]
 
+        reason_text = " | ".join(reasons[:2]) if reasons else "Profile acceptable"
+
         self.status_var.set(
             f"Prediction: {'APPROVED' if final else 'REJECTED'} | "
             f"Avg Probability: {avg_prob*100:.1f}% | "
-            f"Key factors: {rules[0].strip()}"
+            f"Key factors: {reason_text}"
         )
 
 
