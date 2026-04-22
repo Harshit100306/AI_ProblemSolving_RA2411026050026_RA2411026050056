@@ -490,14 +490,21 @@ class SudokuApp:
             csp = SudokuCSP()
             t0 = time.perf_counter()
 
-            def step(r, c, val):
-                if not self.fixed[r][c]:
-                    self.vars[r][c].set(str(val) if val else "")
-                    color = "#1a0a3a" if val == 0 else "#0a1a3a"
-                    self.cells[r][c].config(bg=color)
-                    self.root.update_idletasks()
+           def step(r, c, val):
+            if not self.fixed[r][c]:
+                self.vars[r][c].set(str(val) if val else "")
+        
+                # 🎯 Forward step (trying a number)
+                if val != 0:
+                    self.cells[r][c].config(bg="#0a1a3a", fg=self.ACCENT2)
+                else:
+                    # 🔁 Backtracking step (removing number)
+                    self.cells[r][c].config(bg="#3a0a0a", fg=self.ERROR)
+        
+                # Force UI update for animation
+                self.root.update_idletasks()
 
-            csp.solve(board, step_callback=step, delay=0.01)
+            csp.solve(board, step_callback=step, delay=0.03)
             elapsed = time.perf_counter() - t0
 
             # Final display
